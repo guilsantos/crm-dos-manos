@@ -1,10 +1,9 @@
 "use client";
-import { darkTheme } from "../theme/themes";
-import "./globals.css";
+import { darkTheme } from "../../theme/themes";
+import "../globals.css";
 import CssBaseline from "@mui/material/CssBaseline";
 import { Inter } from "next/font/google";
 import { ThemeProvider } from "@mui/material/styles";
-import { Layout as DashboardLayout } from "../layouts/dashboard/layout";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -25,9 +24,7 @@ export default function RootLayout({
       </head>
       <ThemeProvider theme={darkTheme}>
         <CssBaseline />
-        <body className={inter.className}>
-          <DashboardLayout>{children}</DashboardLayout>
-        </body>
+        <body className={inter.className}>{children}</body>
       </ThemeProvider>
     </html>
   );
