@@ -2,16 +2,47 @@
 import { Children } from 'react';
 import { darkTheme } from "../../theme/themes";
 import "../globals.css";
+import { CacheProvider } from "@emotion/react";
+import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
+import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFns";
 import CssBaseline from "@mui/material/CssBaseline";
 import { Inter } from "next/font/google";
 import { ThemeProvider } from "@mui/material/styles";
+import { Layout as DashboardLayout } from "../../layouts/dashboard/layout";
+import "simplebar-react/dist/simplebar.min.css";
+import { createEmotionCache } from "../../utils/create-emotion-cache";
 import createEmotionServer from '@emotion/server/create-instance';
 import Document from 'next/document';
-import { createEmotionCache } from "../../utils/create-emotion-cache";
 
 const clientSideEmotionCache = createEmotionCache();
 
 const inter = Inter({ subsets: ["latin"] });
+
+const Favicon = () => (
+  <>
+    <link
+      rel="apple-touch-icon"
+      sizes="180x180"
+      href="/apple-touch-icon.png"
+    />
+    <link
+      rel="icon"
+      href="/favicon.ico"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="32x32"
+      href="/favicon-32x32.png"
+    />
+    <link
+      rel="icon"
+      type="image/png"
+      sizes="16x16"
+      href="/favicon-16x16.png"
+    />
+  </>
+);
 
 export const metadata = {
   title: "Create Next App",
@@ -25,16 +56,25 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      {/* <head>
-        <meta name="viewport" content="initial-scale=1, width=device-width" />
-      </head> */}
-      <ThemeProvider theme={darkTheme}>
-        <CssBaseline />
-        <body className={inter.className}>{children}</body>
-      </ThemeProvider>
+      <CacheProvider value={clientSideEmotionCache}>
+        <head>
+          <title>CRM dos manos</title>
+          <meta name="viewport" content="initial-scale=1, width=device-width" />
+          <Favicon />
+        </head>
+        <LocalizationProvider dateAdapter={AdapterDateFns}>
+          <ThemeProvider theme={darkTheme}>
+            <CssBaseline />
+            <body className={inter.className}>
+              <DashboardLayout>{children}</DashboardLayout>
+            </body>
+          </ThemeProvider>
+        </LocalizationProvider>
+      </CacheProvider>
     </html>
   );
 }
+
 RootLayout.getInitialProps = async (ctx: any) => {
   const originalRenderPage = ctx.renderPage;
   const cache = createEmotionCache();
