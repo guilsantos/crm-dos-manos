@@ -10,9 +10,9 @@ import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFns";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import "simplebar-react/dist/simplebar.min.css";
 
-import { Layout as DashboardLayout } from "../../layouts/dashboard/layout";
-import { darkTheme } from "../../theme/themes";
-import { createEmotionCache } from "../../utils/create-emotion-cache";
+import { Layout as DashboardLayout } from "@/layouts/dashboard/layout";
+import { darkTheme } from "@/theme/themes";
+import { createEmotionCache } from "@/utils/create-emotion-cache";
 import "../globals.css";
 
 const clientSideEmotionCache = createEmotionCache();

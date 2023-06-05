@@ -1,14 +1,16 @@
 "use client";
 import { Children } from "react";
-import { darkTheme } from "../../theme/themes";
-import { CacheProvider } from "@emotion/react";
-import "../globals.css";
-import CssBaseline from "@mui/material/CssBaseline";
-import { Inter } from "next/font/google";
-import { ThemeProvider } from "@mui/material/styles";
-import createEmotionServer from "@emotion/server/create-instance";
 import Document from "next/document";
-import { createEmotionCache } from "../../utils/create-emotion-cache";
+import { Inter } from "next/font/google";
+import { CacheProvider } from "@emotion/react";
+import createEmotionServer from "@emotion/server/create-instance";
+import CssBaseline from "@mui/material/CssBaseline";
+import { ThemeProvider } from "@mui/material/styles";
+import "simplebar-react/dist/simplebar.min.css";
+
+import { darkTheme } from "@/theme/themes";
+import { createEmotionCache } from "@/utils/create-emotion-cache";
+import "../globals.css";
 
 const clientSideEmotionCache = createEmotionCache();
 
