@@ -1,12 +1,13 @@
 "use client";
-import { Children } from 'react';
+import { Children } from "react";
 import { darkTheme } from "../../theme/themes";
+import { CacheProvider } from "@emotion/react";
 import "../globals.css";
 import CssBaseline from "@mui/material/CssBaseline";
 import { Inter } from "next/font/google";
 import { ThemeProvider } from "@mui/material/styles";
-import createEmotionServer from '@emotion/server/create-instance';
-import Document from 'next/document';
+import createEmotionServer from "@emotion/server/create-instance";
+import Document from "next/document";
 import { createEmotionCache } from "../../utils/create-emotion-cache";
 
 const clientSideEmotionCache = createEmotionCache();
@@ -25,13 +26,15 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      {/* <head>
-        <meta name="viewport" content="initial-scale=1, width=device-width" />
-      </head> */}
-      <ThemeProvider theme={darkTheme}>
-        <CssBaseline />
-        <body className={inter.className}>{children}</body>
-      </ThemeProvider>
+      <CacheProvider value={clientSideEmotionCache}>
+        <head>
+          <meta name="viewport" content="initial-scale=1, width=device-width" />
+        </head>
+        <ThemeProvider theme={darkTheme}>
+          <CssBaseline />
+          <body className={inter.className}>{children}</body>
+        </ThemeProvider>
+      </CacheProvider>
     </html>
   );
 }
@@ -40,20 +43,17 @@ RootLayout.getInitialProps = async (ctx: any) => {
   const cache = createEmotionCache();
   const { extractCriticalToChunks } = createEmotionServer(cache);
 
-  ctx.renderPage = () => originalRenderPage({
-    enhanceApp: (App: any) => (props: any) => (
-      <App
-        emotionCache={cache}
-        {...props}
-      />
-    )
-  });
+  ctx.renderPage = () =>
+    originalRenderPage({
+      enhanceApp: (App: any) => (props: any) =>
+        <App emotionCache={cache} {...props} />,
+    });
 
   const initialProps = await Document.getInitialProps(ctx);
   const emotionStyles = extractCriticalToChunks(initialProps.html);
   const emotionStyleTags = emotionStyles.styles.map((style) => (
     <style
-      data-emotion={`${style.key} ${style.ids.join(' ')}`}
+      data-emotion={`${style.key} ${style.ids.join(" ")}`}
       key={style.key}
       // eslint-disable-next-line react/no-danger
       dangerouslySetInnerHTML={{ __html: style.css }}
@@ -62,6 +62,6 @@ RootLayout.getInitialProps = async (ctx: any) => {
 
   return {
     ...initialProps,
-    styles: [...Children.toArray(initialProps.styles), ...emotionStyleTags]
+    styles: [...Children.toArray(initialProps.styles), ...emotionStyleTags],
   };
 };
