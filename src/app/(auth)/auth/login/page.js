@@ -17,12 +17,12 @@ import {
   TextField,
   Typography
 } from '@mui/material';
-import { useAuth } from 'src/hooks/use-auth';
+// import { useAuth } from 'src/hooks/use-auth';
 import { Layout as AuthLayout } from 'src/layouts/auth/layout';
 
 const Page = () => {
   const router = useRouter();
-  const auth = useAuth();
+  // const auth = useAuth();
   const [method, setMethod] = useState('email');
   const formik = useFormik({
     initialValues: {
@@ -43,7 +43,7 @@ const Page = () => {
     }),
     onSubmit: async (values, helpers) => {
       try {
-        await auth.signIn(values.email, values.password);
+        // await auth.signIn(values.email, values.password);
         router.push('/');
       } catch (err) {
         helpers.setStatus({ success: false });
@@ -62,10 +62,11 @@ const Page = () => {
 
   const handleSkip = useCallback(
     () => {
-      auth.skip();
+      // auth.skip();
       router.push('/');
     },
-    [auth, router]
+    // [auth, router]
+    [router]
   );
 
   return (

@@ -5,12 +5,12 @@ import { useRouter } from 'next/navigation';
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import { Box, Button, Link, Stack, TextField, Typography } from '@mui/material';
-import { useAuth } from 'src/hooks/use-auth';
+// import { useAuth } from 'src/hooks/use-auth';
 import { Layout as AuthLayout } from 'src/layouts/auth/layout';
 
 const Page = () => {
   const router = useRouter();
-  const auth = useAuth();
+  // const auth = useAuth();
   const formik = useFormik({
     initialValues: {
       email: '',
@@ -35,7 +35,7 @@ const Page = () => {
     }),
     onSubmit: async (values, helpers) => {
       try {
-        await auth.signUp(values.email, values.name, values.password);
+        // await auth.signUp(values.email, values.name, values.password);
         router.push('/');
       } catch (err) {
         helpers.setStatus({ success: false });

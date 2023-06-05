@@ -1,10 +1,13 @@
 "use client";
 import { darkTheme } from "../theme/themes";
 import "./globals.css";
+import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
+import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFns";
 import CssBaseline from "@mui/material/CssBaseline";
 import { Inter } from "next/font/google";
 import { ThemeProvider } from "@mui/material/styles";
 import { Layout as DashboardLayout } from "../layouts/dashboard/layout";
+import "simplebar-react/dist/simplebar.min.css";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -21,14 +24,17 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
+        <title>CRM dos manos</title>
         <meta name="viewport" content="initial-scale=1, width=device-width" />
       </head>
-      <ThemeProvider theme={darkTheme}>
-        <CssBaseline />
-        <body className={inter.className}>
-          <DashboardLayout>{children}</DashboardLayout>
-        </body>
-      </ThemeProvider>
+      <LocalizationProvider dateAdapter={AdapterDateFns}>
+        <ThemeProvider theme={darkTheme}>
+          <CssBaseline />
+          <body className={inter.className}>
+            <DashboardLayout>{children}</DashboardLayout>
+          </body>
+        </ThemeProvider>
+      </LocalizationProvider>
     </html>
   );
 }
