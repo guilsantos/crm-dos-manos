@@ -1,4 +1,4 @@
-import PropTypes from "prop-types";
+import { FC } from "react";
 import ComputerDesktopIcon from "@heroicons/react/24/solid/ComputerDesktopIcon";
 import DeviceTabletIcon from "@heroicons/react/24/solid/DeviceTabletIcon";
 import PhoneIcon from "@heroicons/react/24/solid/PhoneIcon";
@@ -81,8 +81,13 @@ const iconMap = {
   ),
 };
 
-export const OverviewTraffic = (props) => {
-  const { chartSeries, labels, sx } = props;
+interface Props {
+  chartSeries: any[];
+  labels: any[];
+  sx?: any;
+}
+
+export const OverviewTraffic: FC<Props> = ({ chartSeries, labels, sx }) => {
   const chartOptions = useChartOptions(labels);
 
   return (
@@ -129,10 +134,4 @@ export const OverviewTraffic = (props) => {
       </CardContent>
     </Card>
   );
-};
-
-OverviewTraffic.propTypes = {
-  chartSeries: PropTypes.array.isRequired,
-  labels: PropTypes.array.isRequired,
-  sx: PropTypes.object,
 };

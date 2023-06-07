@@ -14,7 +14,6 @@ import {
   Unstable_Grid2 as Grid,
 } from "@mui/material";
 
-import { Layout as DashboardLayout } from "@/layouts/dashboard/layout";
 import { CompanyCard } from "@/sections/companies/company-card";
 import { CompaniesSearch } from "@/sections/companies/companies-search";
 
@@ -149,7 +148,5 @@ const Page = () => (
     </Box>
   </>
 );
-
-Page.getLayout = (page) => <DashboardLayout>{page}</DashboardLayout>;
 
 export default Page;

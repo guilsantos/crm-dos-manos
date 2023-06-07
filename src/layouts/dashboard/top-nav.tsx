@@ -1,4 +1,4 @@
-import PropTypes from "prop-types";
+import { FC } from "react";
 import BellIcon from "@heroicons/react/24/solid/BellIcon";
 import UsersIcon from "@heroicons/react/24/solid/UsersIcon";
 import Bars3Icon from "@heroicons/react/24/solid/Bars3Icon";
@@ -20,8 +20,11 @@ import { AccountPopover } from "./account-popover";
 const SIDE_NAV_WIDTH = 280;
 const TOP_NAV_HEIGHT = 64;
 
-export const TopNav = (props) => {
-  const { onNavOpen } = props;
+interface Props {
+  onNavOpen?: () => {};
+}
+
+export const TopNav: FC<Props> = ({ onNavOpen }) => {
   const lgUp = useMediaQuery((theme) => theme.breakpoints.up("lg"));
   const accountPopover = usePopover();
 
@@ -107,8 +110,4 @@ export const TopNav = (props) => {
       />
     </>
   );
-};
-
-TopNav.propTypes = {
-  onNavOpen: PropTypes.func,
 };

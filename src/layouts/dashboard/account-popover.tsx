@@ -1,6 +1,5 @@
-import { useCallback } from "react";
+import { useCallback, FC } from "react";
 import { useRouter } from "next/navigation";
-import PropTypes from "prop-types";
 import {
   Box,
   Divider,
@@ -11,7 +10,13 @@ import {
 } from "@mui/material";
 // import { useAuth } from 'src/hooks/use-auth';
 
-export const AccountPopover = (props) => {
+interface Props {
+  anchorEl?: any;
+  onClose?: () => {};
+  open: boolean;
+}
+
+export const AccountPopover: FC<Props> = (props) => {
   const { anchorEl, onClose, open } = props;
   const router = useRouter();
   // const auth = useAuth();
@@ -63,10 +68,4 @@ export const AccountPopover = (props) => {
       </MenuList>
     </Popover>
   );
-};
-
-AccountPopover.propTypes = {
-  anchorEl: PropTypes.any,
-  onClose: PropTypes.func,
-  open: PropTypes.bool.isRequired,
 };

@@ -4,7 +4,6 @@ import { Box, Container, Stack, Typography } from "@mui/material";
 
 import { SettingsNotifications } from "@/sections/settings/settings-notifications";
 import { SettingsPassword } from "@/sections/settings/settings-password";
-import { Layout as DashboardLayout } from "@/layouts/dashboard/layout";
 
 const Page = () => (
   <>
@@ -28,7 +27,5 @@ const Page = () => (
     </Box>
   </>
 );
-
-Page.getLayout = (page) => <DashboardLayout>{page}</DashboardLayout>;
 
 export default Page;

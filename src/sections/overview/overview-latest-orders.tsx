@@ -1,5 +1,5 @@
+import { FC } from "react";
 import { format } from "date-fns";
-import PropTypes from "prop-types";
 import ArrowRightIcon from "@heroicons/react/24/solid/ArrowRightIcon";
 import {
   Box,
@@ -25,9 +25,12 @@ const statusMap = {
   refunded: "error",
 };
 
-export const OverviewLatestOrders = (props) => {
-  const { orders = [], sx } = props;
+interface Props {
+  orders?: any[];
+  sx?: any;
+}
 
+export const OverviewLatestOrders: FC<Props> = ({ orders = [], sx }) => {
   return (
     <Card sx={sx}>
       <CardHeader title="Latest Orders" />
@@ -80,9 +83,4 @@ export const OverviewLatestOrders = (props) => {
       </CardActions>
     </Card>
   );
-};
-
-OverviewLatestOrders.prototype = {
-  orders: PropTypes.array,
-  sx: PropTypes.object,
 };

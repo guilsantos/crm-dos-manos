@@ -1,4 +1,4 @@
-import PropTypes from "prop-types";
+import { FC } from "react";
 import ArrowPathIcon from "@heroicons/react/24/solid/ArrowPathIcon";
 import ArrowRightIcon from "@heroicons/react/24/solid/ArrowRightIcon";
 import {
@@ -108,8 +108,12 @@ const useChartOptions = () => {
   };
 };
 
-export const OverviewSales = (props) => {
-  const { chartSeries, sx } = props;
+interface Props {
+  chartSeries: any[];
+  sx?: any;
+}
+
+export const OverviewSales: FC<Props> = ({ chartSeries, sx }) => {
   const chartOptions = useChartOptions();
 
   return (
@@ -155,9 +159,4 @@ export const OverviewSales = (props) => {
       </CardActions>
     </Card>
   );
-};
-
-OverviewSales.protoTypes = {
-  chartSeries: PropTypes.array.isRequired,
-  sx: PropTypes.object,
 };

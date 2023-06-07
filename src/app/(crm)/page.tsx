@@ -14,7 +14,7 @@ import { OverviewTraffic } from "@/sections/overview/overview-traffic";
 
 const now = new Date();
 
-const Page = () => (
+const Home = () => (
   <>
     <Head>
       <title>Overview | Devias Kit</title>
@@ -182,6 +182,4 @@ const Page = () => (
   </>
 );
 
-export default function Home() {
-  return <Page />;
-}
+export default Home

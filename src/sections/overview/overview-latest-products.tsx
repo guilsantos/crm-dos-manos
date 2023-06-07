@@ -1,5 +1,5 @@
+import { FC } from "react";
 import { formatDistanceToNow } from "date-fns";
-import PropTypes from "prop-types";
 import ArrowRightIcon from "@heroicons/react/24/solid/ArrowRightIcon";
 import EllipsisVerticalIcon from "@heroicons/react/24/solid/EllipsisVerticalIcon";
 import {
@@ -17,9 +17,12 @@ import {
   SvgIcon,
 } from "@mui/material";
 
-export const OverviewLatestProducts = (props) => {
-  const { products = [], sx } = props;
+interface Props {
+  products?: any[];
+  sx?: any;
+}
 
+export const OverviewLatestProducts: FC<Props> = ({ products = [], sx }) => {
   return (
     <Card sx={sx}>
       <CardHeader title="Latest Products" />
@@ -84,9 +87,4 @@ export const OverviewLatestProducts = (props) => {
       </CardActions>
     </Card>
   );
-};
-
-OverviewLatestProducts.propTypes = {
-  products: PropTypes.array,
-  sx: PropTypes.object,
 };

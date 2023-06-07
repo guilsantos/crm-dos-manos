@@ -1,4 +1,4 @@
-import PropTypes from "prop-types";
+import { FC } from "react";
 import { format } from "date-fns";
 import {
   Avatar,
@@ -18,21 +18,33 @@ import {
 import { Scrollbar } from "@/components/scrollbar";
 import { getInitials } from "@/utils/get-initials";
 
-export const CustomersTable = (props) => {
-  const {
-    count = 0,
-    items = [],
-    onDeselectAll,
-    onDeselectOne,
-    onPageChange = () => {},
-    onRowsPerPageChange,
-    onSelectAll,
-    onSelectOne,
-    page = 0,
-    rowsPerPage = 0,
-    selected = [],
-  } = props;
+interface Props {
+  count?: number;
+  items?: any[];
+  onDeselectAll?: () => {};
+  onDeselectOne?: () => {};
+  onPageChange?: () => {};
+  onRowsPerPageChange?: () => {};
+  onSelectAll?: () => {};
+  onSelectOne?: () => {};
+  page?: number;
+  rowsPerPage?: number;
+  selected?: any[];
+}
 
+export const CustomersTable: FC<Props> = ({
+  count = 0,
+  items = [],
+  onDeselectAll,
+  onDeselectOne,
+  onPageChange = () => {},
+  onRowsPerPageChange,
+  onSelectAll,
+  onSelectOne,
+  page = 0,
+  rowsPerPage = 0,
+  selected = [],
+}) => {
   const selectedSome = selected.length > 0 && selected.length < items.length;
   const selectedAll = items.length > 0 && selected.length === items.length;
 
@@ -117,18 +129,4 @@ export const CustomersTable = (props) => {
       />
     </Card>
   );
-};
-
-CustomersTable.propTypes = {
-  count: PropTypes.number,
-  items: PropTypes.array,
-  onDeselectAll: PropTypes.func,
-  onDeselectOne: PropTypes.func,
-  onPageChange: PropTypes.func,
-  onRowsPerPageChange: PropTypes.func,
-  onSelectAll: PropTypes.func,
-  onSelectOne: PropTypes.func,
-  page: PropTypes.number,
-  rowsPerPage: PropTypes.number,
-  selected: PropTypes.array,
 };

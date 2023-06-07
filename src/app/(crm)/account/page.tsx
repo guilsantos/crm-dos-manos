@@ -8,7 +8,6 @@ import {
   Unstable_Grid2 as Grid,
 } from "@mui/material";
 
-import { Layout as DashboardLayout } from "@/layouts/dashboard/layout";
 import { AccountProfile } from "@/sections/account/account-profile";
 import { AccountProfileDetails } from "@/sections/account/account-profile-details";
 
@@ -44,7 +43,5 @@ const Page = () => (
     </Box>
   </>
 );
-
-Page.getLayout = (page) => <DashboardLayout>{page}</DashboardLayout>;
 
 export default Page;

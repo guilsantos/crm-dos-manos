@@ -1,4 +1,4 @@
-import PropTypes from "prop-types";
+import { FC } from "react";
 import ArrowDownIcon from "@heroicons/react/24/solid/ArrowDownIcon";
 import ArrowUpIcon from "@heroicons/react/24/solid/ArrowUpIcon";
 import CurrencyDollarIcon from "@heroicons/react/24/solid/CurrencyDollarIcon";
@@ -11,9 +11,19 @@ import {
   Typography,
 } from "@mui/material";
 
-export const OverviewBudget = (props) => {
-  const { difference, positive = false, sx, value } = props;
+interface Props {
+  difference?: number;
+  positive?: boolean;
+  sx?: any;
+  value: string;
+}
 
+export const OverviewBudget: FC<Props> = ({
+  difference,
+  positive = false,
+  sx,
+  value,
+}) => {
   return (
     <Card sx={sx}>
       <CardContent>
@@ -62,11 +72,4 @@ export const OverviewBudget = (props) => {
       </CardContent>
     </Card>
   );
-};
-
-OverviewBudget.prototypes = {
-  difference: PropTypes.number,
-  positive: PropTypes.bool,
-  sx: PropTypes.object,
-  value: PropTypes.string.isRequired,
 };

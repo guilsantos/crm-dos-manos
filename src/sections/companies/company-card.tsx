@@ -1,4 +1,4 @@
-import PropTypes from "prop-types";
+import { FC } from "react";
 import ArrowDownOnSquareIcon from "@heroicons/react/24/solid/ArrowDownOnSquareIcon";
 import ClockIcon from "@heroicons/react/24/solid/ClockIcon";
 import {
@@ -12,9 +12,11 @@ import {
   Typography,
 } from "@mui/material";
 
-export const CompanyCard = (props) => {
-  const { company } = props;
+interface Props {
+  company: any;
+}
 
+export const CompanyCard: FC<Props> = ({ company }) => {
   return (
     <Card
       sx={{
@@ -68,8 +70,4 @@ export const CompanyCard = (props) => {
       </Stack>
     </Card>
   );
-};
-
-CompanyCard.propTypes = {
-  company: PropTypes.object.isRequired,
 };

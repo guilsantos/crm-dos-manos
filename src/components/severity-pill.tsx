@@ -1,4 +1,4 @@
-import PropTypes from "prop-types";
+import { ReactNode, FC } from "react";
 import { styled } from "@mui/material/styles";
 
 const SeverityPillRoot = styled("span")(({ theme, ownerState }) => {
@@ -31,9 +31,16 @@ const SeverityPillRoot = styled("span")(({ theme, ownerState }) => {
   };
 });
 
-export const SeverityPill = (props) => {
-  const { color = "primary", children, ...other } = props;
+interface SeverityPillProps {
+  children?: ReactNode;
+  color?: "primary" | "secondary" | "error" | "info" | "warning" | "success";
+}
 
+export const SeverityPill: FC<SeverityPillProps> = ({
+  color = "primary",
+  children,
+  ...other
+}) => {
   const ownerState = { color };
 
   return (
@@ -41,16 +48,4 @@ export const SeverityPill = (props) => {
       {children}
     </SeverityPillRoot>
   );
-};
-
-SeverityPill.propTypes = {
-  children: PropTypes.node,
-  color: PropTypes.oneOf([
-    "primary",
-    "secondary",
-    "error",
-    "info",
-    "warning",
-    "success",
-  ]),
 };

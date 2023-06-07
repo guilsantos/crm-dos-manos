@@ -1,4 +1,4 @@
-import PropTypes from "prop-types";
+import { FC } from "react";
 import ListBulletIcon from "@heroicons/react/24/solid/ListBulletIcon";
 import {
   Avatar,
@@ -11,9 +11,12 @@ import {
   Typography,
 } from "@mui/material";
 
-export const OverviewTasksProgress = (props) => {
-  const { value, sx } = props;
+interface Props {
+  value: number;
+  sx?: any;
+}
 
+export const OverviewTasksProgress: FC<Props> = ({ value, sx }) => {
   return (
     <Card sx={sx}>
       <CardContent>
@@ -47,9 +50,4 @@ export const OverviewTasksProgress = (props) => {
       </CardContent>
     </Card>
   );
-};
-
-OverviewTasksProgress.propTypes = {
-  value: PropTypes.number.isRequired,
-  sx: PropTypes.object,
 };

@@ -1,10 +1,9 @@
+import { FC } from "react";
 import NextLink from "next/link";
 import { usePathname } from "next/navigation";
-import PropTypes from "prop-types";
 import ChevronUpDownIcon from "@heroicons/react/24/solid/ChevronUpDownIcon";
 import {
   Box,
-  Button,
   Divider,
   Drawer,
   Stack,
@@ -18,8 +17,12 @@ import { Scrollbar } from "@/components/scrollbar";
 import { items } from "./config";
 import { SideNavItem } from "./side-nav-item";
 
-export const SideNav = (props) => {
-  const { open, onClose } = props;
+interface Props {
+  onClose?: () => {};
+  open?: boolean;
+}
+
+export const SideNav: FC<Props> = ({ open, onClose }) => {
   const pathname = usePathname();
   const lgUp = useMediaQuery((theme) => theme.breakpoints.up("lg"));
 
@@ -155,9 +158,4 @@ export const SideNav = (props) => {
       {content}
     </Drawer>
   );
-};
-
-SideNav.propTypes = {
-  onClose: PropTypes.func,
-  open: PropTypes.bool,
 };

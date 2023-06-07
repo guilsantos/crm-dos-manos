@@ -1,4 +1,4 @@
-import PropTypes from "prop-types";
+import { FC } from "react";
 import CurrencyDollarIcon from "@heroicons/react/24/solid/CurrencyDollarIcon";
 import {
   Avatar,
@@ -9,9 +9,12 @@ import {
   Typography,
 } from "@mui/material";
 
-export const OverviewTotalProfit = (props) => {
-  const { value, sx } = props;
+interface Props {
+  value?: string;
+  sx?: any;
+}
 
+export const OverviewTotalProfit: FC<Props> = ({ value, sx }) => {
   return (
     <Card sx={sx}>
       <CardContent>
@@ -42,9 +45,4 @@ export const OverviewTotalProfit = (props) => {
       </CardContent>
     </Card>
   );
-};
-
-OverviewTotalProfit.propTypes = {
-  value: PropTypes.string,
-  sx: PropTypes.object,
 };
