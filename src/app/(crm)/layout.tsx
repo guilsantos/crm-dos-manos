@@ -9,11 +9,14 @@ import { ThemeProvider } from "@mui/material/styles";
 import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFns";
 import { LocalizationProvider } from "@mui/x-date-pickers/LocalizationProvider";
 import "simplebar-react/dist/simplebar.min.css";
+import { QueryClient, QueryClientProvider } from "react-query";
 
 import { Layout as DashboardLayout } from "@/layouts/dashboard/layout";
 import { darkTheme } from "@/theme/themes";
 import { createEmotionCache } from "@/utils/create-emotion-cache";
 import "../globals.css";
+
+const queryClient = new QueryClient();
 
 const clientSideEmotionCache = createEmotionCache();
 
@@ -46,14 +49,16 @@ export default function RootLayout({
           <meta name="viewport" content="initial-scale=1, width=device-width" />
           <Favicon />
         </head>
-        <LocalizationProvider dateAdapter={AdapterDateFns}>
-          <ThemeProvider theme={darkTheme}>
-            <CssBaseline />
-            <body className={inter.className}>
-              <DashboardLayout>{children}</DashboardLayout>
-            </body>
-          </ThemeProvider>
-        </LocalizationProvider>
+        <QueryClientProvider client={queryClient}>
+          <LocalizationProvider dateAdapter={AdapterDateFns}>
+            <ThemeProvider theme={darkTheme}>
+              <CssBaseline />
+              <body className={inter.className}>
+                <DashboardLayout>{children}</DashboardLayout>
+              </body>
+            </ThemeProvider>
+          </LocalizationProvider>
+        </QueryClientProvider>
       </CacheProvider>
     </html>
   );
